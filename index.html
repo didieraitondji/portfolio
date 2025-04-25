@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Complet | Jean Dupont</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                light: "#6366f1",
+                dark: "#8b5cf6",
+              },
+              secondary: {
+                light: "#f1f5f9",
+                dark: "#1e293b",
+              },
+            },
+            animation: {
+              "bounce-slow": "bounce 3s infinite",
+              float: "float 6s ease-in-out infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-20px)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      .dark ::-webkit-scrollbar-track {
+        background: #1e293b;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      .dark ::-webkit-scrollbar-thumb {
+        background: #475569;
+      }
+
+      /* Animation for sections */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .section-animate {
+        animation: fadeIn 0.6s ease-out forwards;
+      }
+
+      /* Hover effects */
+      .btn-primary {
+        transition: all 0.3s ease;
+        transform: translateY(0);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+      }
+      .btn-secondary {
+        transition: all 0.3s ease;
+        transform: translateY(0);
+      }
+      .btn-secondary:hover {
+        transform: translateY(-2px);
+        background-color: rgba(99, 102, 241, 0.2) !important;
+      }
+      .project-card {
+        transition: all 0.3s ease;
+      }
+      .project-card:hover {
+        transform: translateY(-5px);
+      }
+      .social-icon {
+        transition: all 0.3s ease;
+      }
+      .social-icon:hover {
+        transform: scale(1.1);
+      }
+      .nav-link {
+        transition: all 0.2s ease;
+      }
+      .nav-link:hover:not(.active) {
+        background-color: rgba(99, 102, 241, 0.1);
+      }
+
+      /* Style pour les liens actifs */
+      .nav-link.active {
+        background-color: rgba(99, 102, 241, 0.2);
+        color: #6366f1;
+      }
+      .dark .nav-link.active {
+        background-color: rgba(139, 92, 246, 0.2);
+        color: #8b5cf6;
+      }
+
+      /* Section visibility detection */
+      .section {
+        min-height: 100vh;
+        padding: 80px 0;
+      }
+    </style>
+  </head>
+  <body
+    class="font-sans bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300"
+  >
+    <div class="flex flex-col lg:flex-row min-h-screen">
+      <!-- Sidebar -->
+      <aside
+        class="w-full lg:w-64 fixed lg:h-screen bg-white dark:bg-gray-800 shadow-lg lg:shadow-none z-10 hidden lg:block"
+      >
+        <div class="p-6 flex flex-col h-full">
+          <!-- Profile -->
+          <div class="flex flex-col items-center mb-8">
+            <div
+              class="w-32 h-32 rounded-full overflow-hidden border-4 border-primary-light dark:border-primary-dark mb-4"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80"
+                alt="Profile"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <h1 class="text-xl font-bold">Jean Dupont</h1>
+            <p class="text-primary-light dark:text-primary-dark">
+              Développeur Fullstack
+            </p>
+          </div>
+
+          <!-- Navigation -->
+          <nav class="flex-1">
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#home"
+                  class="nav-link active flex items-center px-4 py-2 rounded-lg transition-colors"
+                >
+                  <i class="fas fa-home mr-3"></i>
+                  <span>Accueil</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#about"
+                  class="nav-link flex items-center px-4 py-2 rounded-lg transition-colors"
+                >
+                  <i class="fas fa-user mr-3"></i>
+                  <span>À propos</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#education"
+                  class="nav-link flex items-center px-4 py-2 rounded-lg transition-colors"
+                >
+                  <i class="fas fa-graduation-cap mr-3"></i>
+                  <span>Éducation</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#certifications"
+                  class="nav-link flex items-center px-4 py-2 rounded-lg transition-colors"
+                >
+                  <i class="fas fa-award mr-3"></i>
+                  <span>Certifications</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#projects"
+                  class="nav-link flex items-center px-4 py-2 rounded-lg transition-colors"
+                >
+                  <i class="fas fa-code mr-3"></i>
+                  <span>Projets</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  class="nav-link flex items-center px-4 py-2 rounded-lg transition-colors"
+                >
+                  <i class="fas fa-envelope mr-3"></i>
+                  <span>Contact</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <!-- Dark mode toggle and social -->
+          <div class="mt-auto pt-4">
+            <div class="flex justify-center mb-4">
+              <button
+                id="theme-toggle"
+                type="button"
+                title="Toggle dark mode"
+                class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+              >
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:block"></i>
+              </button>
+            </div>
+            <div class="flex justify-center space-x-4">
+              <a
+                href="#"
+                title="GitHub"
+                class="social-icon text-gray-500 hover:text-primary-light dark:hover:text-primary-dark"
+              >
+                <i class="fab fa-github text-xl"></i>
+              </a>
+              <a
+                href="#"
+                title="LinkedIn"
+                class="social-icon text-gray-500 hover:text-primary-light dark:hover:text-primary-dark"
+              >
+                <i class="fab fa-linkedin text-xl"></i>
+              </a>
+              <a
+                href="#"
+                title="Twitter"
+                class="social-icon text-gray-500 hover:text-primary-light dark:hover:text-primary-dark"
+              >
+                <i class="fab fa-twitter text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Mobile menu button -->
+      <button
+        id="mobile-menu-button"
+        type="button"
+        title="Toggle mobile menu"
+        class="lg:hidden fixed bottom-4 right-4 z-20 p-4 bg-primary-light dark:bg-primary-dark text-white rounded-full shadow-lg hover:bg-primary-light/90 dark:hover:bg-primary-dark/90 transition-colors"
+      >
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+
+      <!-- Mobile sidebar -->
+      <div
+        id="mobile-sidebar"
+        class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden lg:hidden"
+      >
+        <div
+          class="absolute top-0 left-0 w-64 h-full bg-white dark:bg-gray-800 shadow-lg"
+        >
+          <div class="p-6 flex flex-col h-full">
+            <div class="flex justify-end mb-4">
+              <button
+                id="close-mobile-menu"
+                type="button"
+                title="Close mobile menu"
+                class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+              >
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+
+            <!-- Profile -->
+            <div class="flex flex-col items-center mb-8">
+              <div
+                class="w-32 h-32 rounded-full overflow-hidden border-4 border-primary-light dark:border-primary-dark mb-4"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80"
+                  alt="Profile"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <h1 class="text-xl font-bold">Jean Dupont</h1>
+              <p class="text-primary-light dark:text-primary-dark">
+                Développeur Fullstack
+              </p>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="flex-1">
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="#home"
+                    class="nav-link active flex items-center px-4 py-2 rounded-lg transition-colors"
+                  >
+                    <i class="fas fa-home mr-3"></i>
+                    <span>Accueil</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#about"
+                    class="nav-link flex items-center px-4 py-2 rounded-lg transition-colors"
+                  >
+                    <i class="fas fa-user mr-3"></i>
+                    <span>À propos</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#education"
+                    class="nav-link flex items-center px-4 py-2 rounded-lg transition-colors"
+                  >
+                    <i class="fas fa-graduation-cap mr-3"></i>
+                    <span>Éducation</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#certifications"
+                    class="nav-link flex items-center px-4 py-2 rounded-lg transition-colors"
+                  >
+                    <i class="fas fa-award mr-3"></i>
+                    <span>Certifications</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#projects"
+                    class="nav-link flex items-center px-4 py-2 rounded-lg transition-colors"
+                  >
+                    <i class="fas fa-code mr-3"></i>
+                    <span>Projets</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#contact"
+                    class="nav-link flex items-center px-4 py-2 rounded-lg transition-colors"
+                  >
+                    <i class="fas fa-envelope mr-3"></i>
+                    <span>Contact</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+
+            <!-- Dark mode toggle and social -->
+            <div class="mt-auto pt-4">
+              <div class="flex justify-center mb-4">
+                <button
+                  id="mobile-theme-toggle"
+                  type="button"
+                  title="Toggle dark mode"
+                  class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                >
+                  <i class="fas fa-moon dark:hidden"></i>
+                  <i class="fas fa-sun hidden dark:block"></i>
+                </button>
+              </div>
+              <div class="flex justify-center space-x-4">
+                <a
+                  href="#"
+                  title="GitHub"
+                  class="social-icon text-gray-500 hover:text-primary-light dark:hover:text-primary-dark"
+                >
+                  <i class="fab fa-github text-xl"></i>
+                </a>
+                <a
+                  href="#"
+                  title="LinkedIn"
+                  class="social-icon text-gray-500 hover:text-primary-light dark:hover:text-primary-dark"
+                >
+                  <i class="fab fa-linkedin text-xl"></i>
+                </a>
+                <a
+                  href="#"
+                  title="Twitter"
+                  class="social-icon text-gray-500 hover:text-primary-light dark:hover:text-primary-dark"
+                >
+                  <i class="fab fa-twitter text-xl"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <main class="flex-1 lg:ml-64">
+        <!-- Home Section -->
+        <section
+          id="home"
+          class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900"
+        >
+          <div
+            class="container mx-auto px-6 py-20 flex flex-col md:flex-row items-center justify-between"
+          >
+            <!-- Text Content -->
+            <div class="md:w-1/2 mb-16 md:mb-0 space-y-6 section-animate">
+              <div class="space-y-2">
+                <p
+                  class="text-lg font-medium text-primary-light dark:text-primary-dark"
+                >
+                  Bonjour, je suis
+                </p>
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight">
+                  <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-primary-light to-blue-600 dark:from-primary-dark dark:to-indigo-400"
+                  >
+                    Didier T. Aitondji
+                  </span>
+                </h1>
+                <h2
+                  class="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300"
+                >
+                  Développeur Fullstack
+                </h2>
+              </div>
+
+              <p
+                class="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-lg"
+              >
+                Je crée des applications web modernes, performantes et
+                accessibles avec les dernières technologies.
+              </p>
+
+              <div class="flex flex-wrap gap-4 pt-2">
+                <a
+                  href="#projects"
+                  class="btn-primary px-8 py-3.5 rounded-lg font-medium text-white bg-gradient-to-r from-primary-light to-blue-600 dark:from-primary-dark dark:to-indigo-600 hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  Voir mes projets
+                  <span class="ml-2">→</span>
+                </a>
+                <a
+                  href="#contact"
+                  class="btn-secondary px-8 py-3.5 rounded-lg font-medium border-2 border-primary-light dark:border-primary-dark text-primary-light dark:text-primary-dark hover:bg-primary-light/10 dark:hover:bg-primary-dark/10 transition-all duration-300"
+                >
+                  Me contacter
+                </a>
+              </div>
+            </div>
+
+            <!-- Image Content -->
+            <div
+              class="md:w-1/2 flex justify-center section-animate"
+              style="animation-delay: 0.2s"
+            >
+              <div class="relative w-72 h-72 md:w-96 md:h-96">
+                <div
+                  class="absolute inset-0 bg-gradient-to-r from-primary-light/20 to-blue-600/20 dark:from-primary-dark/20 dark:to-indigo-600/20 rounded-full blur-xl animate-pulse"
+                ></div>
+                <div
+                  class="relative w-full h-full flex items-center justify-center"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                    alt="Jean Dupont - Développeur Fullstack"
+                    class="w-4/5 h-4/5 object-cover rounded-full border-4 border-white dark:border-gray-800 shadow-2xl transform hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+
+                <!-- Decorative elements -->
+                <div
+                  class="absolute -bottom-6 -left-6 w-24 h-24 rounded-full bg-primary-light/10 dark:bg-primary-dark/10 -z-10"
+                ></div>
+                <div
+                  class="absolute -top-6 -right-6 w-20 h-20 rounded-full bg-blue-600/10 dark:bg-indigo-600/10 -z-10"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-24 bg-white dark:bg-gray-900">
+          <div class="container mx-auto px-6">
+            <!-- Section Title -->
+            <div class="text-center mb-20 section-animate">
+              <h2
+                class="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary-light to-blue-600 dark:from-primary-dark dark:to-indigo-400"
+              >
+                À propos de moi
+              </h2>
+              <div
+                class="w-20 h-1 bg-primary-light dark:bg-primary-dark mx-auto rounded-full"
+              ></div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-12 lg:gap-16">
+              <!-- Personal Info Card -->
+              <div class="lg:w-1/3 section-animate">
+                <div
+                  class="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700"
+                >
+                  <div class="flex justify-center mb-6">
+                    <div class="relative w-32 h-32">
+                      <div
+                        class="absolute inset-0 bg-gradient-to-r from-primary-light/20 to-blue-600/20 dark:from-primary-dark/20 dark:to-indigo-600/20 rounded-full blur-md animate-pulse"
+                      ></div>
+                      <img
+                        src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        alt="Jean Dupont"
+                        class="relative w-full h-full object-cover rounded-full border-4 border-white dark:border-gray-800"
+                      />
+                    </div>
+                  </div>
+
+                  <h3 class="text-2xl font-semibold mb-6 text-center">
+                    Informations personnelles
+                  </h3>
+
+                  <ul class="space-y-4">
+                    <li class="flex items-start">
+                      <span
+                        class="font-medium w-28 flex-shrink-0 text-gray-700 dark:text-gray-300"
+                        >Nom:</span
+                      >
+                      <span class="text-gray-600 dark:text-gray-400"
+                        >Jean Dupont</span
+                      >
+                    </li>
+                    <li class="flex items-start">
+                      <span
+                        class="font-medium w-28 flex-shrink-0 text-gray-700 dark:text-gray-300"
+                        >Âge:</span
+                      >
+                      <span class="text-gray-600 dark:text-gray-400"
+                        >28 ans</span
+                      >
+                    </li>
+                    <li class="flex items-start">
+                      <span
+                        class="font-medium w-28 flex-shrink-0 text-gray-700 dark:text-gray-300"
+                        >Email:</span
+                      >
+                      <a
+                        href="mailto:jean.dupont@example.com"
+                        class="text-gray-600 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark transition-colors"
+                        >jean.dupont@example.com</a
+                      >
+                    </li>
+                    <li class="flex items-start">
+                      <span
+                        class="font-medium w-28 flex-shrink-0 text-gray-700 dark:text-gray-300"
+                        >Téléphone:</span
+                      >
+                      <a
+                        href="tel:+33612345678"
+                        class="text-gray-600 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark transition-colors"
+                        >+33 6 12 34 56 78</a
+                      >
+                    </li>
+                    <li class="flex items-start">
+                      <span
+                        class="font-medium w-28 flex-shrink-0 text-gray-700 dark:text-gray-300"
+                        >Localisation:</span
+                      >
+                      <span class="text-gray-600 dark:text-gray-400"
+                        >Paris, France</span
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- About Content -->
+              <div
+                class="lg:w-2/3 section-animate"
+                style="animation-delay: 0.2s"
+              >
+                <!-- Journey -->
+                <div class="mb-12">
+                  <h3
+                    class="text-2xl md:text-3xl font-semibold mb-6 text-gray-800 dark:text-white"
+                  >
+                    Mon
+                    <span class="text-primary-light dark:text-primary-dark"
+                      >parcours</span
+                    >
+                  </h3>
+                  <p
+                    class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6"
+                  >
+                    Développeur fullstack passionné avec plus de 5 ans
+                    d'expérience dans la création d'applications web
+                    performantes et évolutives. Je me spécialise dans les
+                    technologies JavaScript comme React, Node.js et Vue.js.
+                  </p>
+                  <p
+                    class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed"
+                  >
+                    Mon approche combine une solide expertise technique avec une
+                    compréhension approfondie des besoins utilisateurs,
+                    permettant de livrer des solutions qui allient performance,
+                    élégance et fonctionnalité.
+                  </p>
+                </div>
+
+                <!-- Skills -->
+                <div class="mb-12">
+                  <h3
+                    class="text-2xl md:text-3xl font-semibold mb-8 text-gray-800 dark:text-white"
+                  >
+                    Mes
+                    <span class="text-primary-light dark:text-primary-dark"
+                      >compétences</span
+                    >
+                  </h3>
+
+                  <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div
+                      class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl flex items-center hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 border border-gray-100 dark:border-gray-700 group"
+                    >
+                      <i
+                        class="fab fa-js text-yellow-400 text-3xl mr-4 group-hover:scale-110 transition-transform"
+                      ></i>
+                      <div>
+                        <div class="font-medium">JavaScript</div>
+                        <div
+                          class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-1.5 mt-2"
+                        >
+                          <div
+                            class="bg-yellow-400 h-1.5 rounded-full"
+                            style="width: 95%"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl flex items-center hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 border border-gray-100 dark:border-gray-700 group"
+                    >
+                      <i
+                        class="fab fa-react text-blue-400 text-3xl mr-4 group-hover:scale-110 transition-transform"
+                      ></i>
+                      <div>
+                        <div class="font-medium">React</div>
+                        <div
+                          class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-1.5 mt-2"
+                        >
+                          <div
+                            class="bg-blue-400 h-1.5 rounded-full"
+                            style="width: 90%"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl flex items-center hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 border border-gray-100 dark:border-gray-700 group"
+                    >
+                      <i
+                        class="fab fa-vuejs text-green-400 text-3xl mr-4 group-hover:scale-110 transition-transform"
+                      ></i>
+                      <div>
+                        <div class="font-medium">Vue.js</div>
+                        <div
+                          class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-1.5 mt-2"
+                        >
+                          <div
+                            class="bg-green-400 h-1.5 rounded-full"
+                            style="width: 85%"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl flex items-center hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 border border-gray-100 dark:border-gray-700 group"
+                    >
+                      <i
+                        class="fab fa-node-js text-green-600 text-3xl mr-4 group-hover:scale-110 transition-transform"
+                      ></i>
+                      <div>
+                        <div class="font-medium">Node.js</div>
+                        <div
+                          class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-1.5 mt-2"
+                        >
+                          <div
+                            class="bg-green-600 h-1.5 rounded-full"
+                            style="width: 88%"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl flex items-center hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 border border-gray-100 dark:border-gray-700 group"
+                    >
+                      <i
+                        class="fab fa-python text-blue-600 text-3xl mr-4 group-hover:scale-110 transition-transform"
+                      ></i>
+                      <div>
+                        <div class="font-medium">Python</div>
+                        <div
+                          class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-1.5 mt-2"
+                        >
+                          <div
+                            class="bg-blue-600 h-1.5 rounded-full"
+                            style="width: 80%"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl flex items-center hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 border border-gray-100 dark:border-gray-700 group"
+                    >
+                      <i
+                        class="fas fa-database text-blue-500 text-3xl mr-4 group-hover:scale-110 transition-transform"
+                      ></i>
+                      <div>
+                        <div class="font-medium">MongoDB</div>
+                        <div
+                          class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-1.5 mt-2"
+                        >
+                          <div
+                            class="bg-blue-500 h-1.5 rounded-full"
+                            style="width: 82%"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- CV Button -->
+                <a
+                  href="#"
+                  class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-light to-blue-600 dark:from-primary-dark dark:to-indigo-600 text-white rounded-xl font-medium hover:opacity-90 transition-opacity shadow-lg hover:shadow-xl"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 mr-2"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                    />
+                  </svg>
+                  Télécharger mon CV
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="section bg-gray-50 dark:bg-gray-900">
+          <div class="container mx-auto px-6 py-20">
+            <h2 class="text-3xl font-bold mb-12 text-center section-animate">
+              Mon éducation
+            </h2>
+
+            <div class="max-w-3xl mx-auto">
+              <div
+                class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-300 before:to-transparent dark:before:via-gray-700"
+              >
+                <!-- Item 1 -->
+                <div
+                  class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
+                >
+                  <div
+                    class="flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 bg-white dark:bg-gray-800 dark:border-gray-600 text-primary-light dark:text-primary-dark shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 section-animate"
+                  >
+                    <i class="fas fa-graduation-cap"></i>
+                  </div>
+
+                  <div
+                    class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 shadow"
+                  >
+                    <div
+                      class="flex items-center justify-between space-x-2 mb-1"
+                    >
+                      <div class="font-bold text-gray-900 dark:text-white">
+                        Master en Informatique
+                      </div>
+                      <time
+                        class="font-caveat font-medium text-primary-light dark:text-primary-dark"
+                        >2018 - 2020</time
+                      >
+                    </div>
+                    <div class="text-gray-500 dark:text-gray-300">
+                      Université Paris-Saclay
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mt-2">
+                      Spécialisation en développement web et intelligence
+                      artificielle. Mémoire sur l'optimisation des performances
+                      des applications React.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div
+                  class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
+                >
+                  <div
+                    class="flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 bg-white dark:bg-gray-800 dark:border-gray-600 text-primary-light dark:text-primary-dark shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 section-animate"
+                    style="animation-delay: 0.2s"
+                  >
+                    <i class="fas fa-graduation-cap"></i>
+                  </div>
+
+                  <div
+                    class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 shadow"
+                  >
+                    <div
+                      class="flex items-center justify-between space-x-2 mb-1"
+                    >
+                      <div class="font-bold text-gray-900 dark:text-white">
+                        Licence en Informatique
+                      </div>
+                      <time
+                        class="font-caveat font-medium text-primary-light dark:text-primary-dark"
+                        >2015 - 2018</time
+                      >
+                    </div>
+                    <div class="text-gray-500 dark:text-gray-300">
+                      Université Paris-Diderot
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mt-2">
+                      Fondamentaux en programmation, algorithmique et bases de
+                      données. Projet de fin d'études sur un système de gestion
+                      de bibliothèque en Java.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div
+                  class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active"
+                >
+                  <div
+                    class="flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 bg-white dark:bg-gray-800 dark:border-gray-600 text-primary-light dark:text-primary-dark shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 section-animate"
+                    style="animation-delay: 0.4s"
+                  >
+                    <i class="fas fa-graduation-cap"></i>
+                  </div>
+
+                  <div
+                    class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 shadow"
+                  >
+                    <div
+                      class="flex items-center justify-between space-x-2 mb-1"
+                    >
+                      <div class="font-bold text-gray-900 dark:text-white">
+                        Baccalauréat Scientifique
+                      </div>
+                      <time
+                        class="font-caveat font-medium text-primary-light dark:text-primary-dark"
+                        >2015</time
+                      >
+                    </div>
+                    <div class="text-gray-500 dark:text-gray-300">
+                      Lycée Louis-le-Grand, Paris
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mt-2">
+                      Option Sciences de l'Ingénieur, mention Très Bien.
+                      Participation aux Olympiades de Mathématiques.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="section bg-white dark:bg-gray-800">
+          <div class="container mx-auto px-6 py-20">
+            <h2 class="text-3xl font-bold mb-12 text-center section-animate">
+              Mes certifications
+            </h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <!-- Certification 1 -->
+              <div
+                class="bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg project-card section-animate"
+              >
+                <div class="p-6">
+                  <div class="flex items-center mb-4">
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png"
+                      alt="React"
+                      class="w-12 h-12 object-contain mr-4"
+                    />
+                    <div>
+                      <h3 class="font-bold text-lg">React Developer</h3>
+                      <p class="text-sm text-gray-500 dark:text-gray-400">
+                        Meta (ex-Facebook)
+                      </p>
+                    </div>
+                  </div>
+                  <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    Certification professionnelle en développement
+                    d'applications avec React et React Native. Couvre les hooks,
+                    le contexte, Redux et les tests.
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500 dark:text-gray-400"
+                      >Obtenue en 2022</span
+                    >
+                    <a
+                      href="#"
+                      class="text-primary-light dark:text-primary-dark font-medium hover:underline"
+                      >Voir le certificat</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Certification 2 -->
+              <div
+                class="bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg project-card section-animate"
+                style="animation-delay: 0.2s"
+              >
+                <div class="p-6">
+                  <div class="flex items-center mb-4">
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1280px-Node.js_logo.svg.png"
+                      alt="Node.js"
+                      class="w-12 h-12 object-contain mr-4"
+                    />
+                    <div>
+                      <h3 class="font-bold text-lg">Node.js Developer</h3>
+                      <p class="text-sm text-gray-500 dark:text-gray-400">
+                        OpenJS Foundation
+                      </p>
+                    </div>
+                  </div>
+                  <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    Certification en développement backend avec Node.js, Express
+                    et MongoDB. Inclut la création d'API RESTful,
+                    l'authentification et les websockets.
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500 dark:text-gray-400"
+                      >Obtenue en 2021</span
+                    >
+                    <a
+                      href="#"
+                      class="text-primary-light dark:text-primary-dark font-medium hover:underline"
+                      >Voir le certificat</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Certification 3 -->
+              <div
+                class="bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg project-card section-animate"
+                style="animation-delay: 0.4s"
+              >
+                <div class="p-6">
+                  <div class="flex items-center mb-4">
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/AWS_Logo.svg/1280px-AWS_Logo.svg.png"
+                      alt="AWS"
+                      class="w-12 h-12 object-contain mr-4"
+                    />
+                    <div>
+                      <h3 class="font-bold text-lg">AWS Certified Developer</h3>
+                      <p class="text-sm text-gray-500 dark:text-gray-400">
+                        Amazon Web Services
+                      </p>
+                    </div>
+                  </div>
+                  <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    Certification en développement d'applications cloud-native
+                    sur AWS. Couvre Lambda, API Gateway, DynamoDB, Cognito et
+                    les meilleures pratiques de déploiement.
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500 dark:text-gray-400"
+                      >Obtenue en 2020</span
+                    >
+                    <a
+                      href="#"
+                      class="text-primary-light dark:text-primary-dark font-medium hover:underline"
+                      >Voir le certificat</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section bg-gray-50 dark:bg-gray-900">
+          <div class="container mx-auto px-6 py-20">
+            <h2 class="text-3xl font-bold mb-12 text-center section-animate">
+              Mes projets
+            </h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <!-- Project 1 -->
+              <div
+                class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg project-card section-animate"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                  alt="Project 1"
+                  class="w-full h-48 object-cover"
+                />
+                <div class="p-6">
+                  <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-xl">Plateforme E-commerce</h3>
+                    <div class="flex space-x-2">
+                      <span
+                        class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs px-2 py-1 rounded"
+                        >React</span
+                      >
+                      <span
+                        class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded"
+                        >Node.js</span
+                      >
+                    </div>
+                  </div>
+                  <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    Plateforme complète avec panier, paiement en ligne et
+                    système de recommandation. Déployé sur AWS avec
+                    auto-scaling.
+                  </p>
+                  <div class="flex space-x-3">
+                    <a
+                      href="#"
+                      class="text-primary-light dark:text-primary-dark font-medium hover:underline"
+                      >Démo</a
+                    >
+                    <a
+                      href="#"
+                      class="text-primary-light dark:text-primary-dark font-medium hover:underline"
+                      >Code</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 2 -->
+              <div
+                class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg project-card section-animate"
+                style="animation-delay: 0.2s"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1555421689-3f034debb7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                  alt="Project 2"
+                  class="w-full h-48 object-cover"
+                />
+                <div class="p-6">
+                  <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-xl">Réseau Social</h3>
+                    <div class="flex space-x-2">
+                      <span
+                        class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs px-2 py-1 rounded"
+                        >Vue.js</span
+                      >
+                      <span
+                        class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-xs px-2 py-1 rounded"
+                        >GraphQL</span
+                      >
+                    </div>
+                  </div>
+                  <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    Application avec fil d'actualité en temps réel, chat et
+                    notifications push. Optimisé pour les performances avec lazy
+                    loading.
+                  </p>
+                  <div class="flex space-x-3">
+                    <a
+                      href="#"
+                      class="text-primary-light dark:text-primary-dark font-medium hover:underline"
+                      >Démo</a
+                    >
+                    <a
+                      href="#"
+                      class="text-primary-light dark:text-primary-dark font-medium hover:underline"
+                      >Code</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 3 -->
+              <div
+                class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg project-card section-animate"
+                style="animation-delay: 0.4s"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80"
+                  alt="Project 3"
+                  class="w-full h-48 object-cover"
+                />
+                <div class="p-6">
+                  <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-xl">Dashboard Analytics</h3>
+                    <div class="flex space-x-2">
+                      <span
+                        class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs px-2 py-1 rounded"
+                        >JavaScript</span
+                      >
+                      <span
+                        class="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-xs px-2 py-1 rounded"
+                        >D3.js</span
+                      >
+                    </div>
+                  </div>
+                  <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    Tableau de bord interactif avec visualisation de données en
+                    temps réel. Export PDF/Excel et filtres avancés.
+                  </p>
+                  <div class="flex space-x-3">
+                    <a
+                      href="#"
+                      class="text-primary-light dark:text-primary-dark font-medium hover:underline"
+                      >Démo</a
+                    >
+                    <a
+                      href="#"
+                      class="text-primary-light dark:text-primary-dark font-medium hover:underline"
+                      >Code</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="text-center mt-12 section-animate"
+              style="animation-delay: 0.6s"
+            >
+              <a
+                href="#"
+                class="btn-primary inline-block bg-primary-light dark:bg-primary-dark text-white px-6 py-3 rounded-lg font-medium"
+              >
+                Voir tous mes projets
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section bg-white dark:bg-gray-800">
+          <div class="container mx-auto px-6 py-20">
+            <h2 class="text-3xl font-bold mb-12 text-center section-animate">
+              Contactez-moi
+            </h2>
+
+            <div class="max-w-4xl mx-auto">
+              <div class="grid md:grid-cols-2 gap-12">
+                <div class="section-animate">
+                  <h3 class="text-xl font-semibold mb-4">
+                    Informations de contact
+                  </h3>
+                  <p class="text-gray-600 dark:text-gray-300 mb-6">
+                    Vous avez un projet en tête ou souhaitez discuter d'une
+                    opportunité ? N'hésitez pas à me contacter via le formulaire
+                    ou directement par email/téléphone.
+                  </p>
+
+                  <div class="space-y-4">
+                    <div class="flex items-start">
+                      <div
+                        class="flex-shrink-0 bg-primary-light/10 dark:bg-primary-dark/10 p-3 rounded-lg text-primary-light dark:text-primary-dark"
+                      >
+                        <i class="fas fa-envelope text-xl"></i>
+                      </div>
+                      <div class="ml-4">
+                        <h4 class="font-medium">Email</h4>
+                        <a
+                          href="mailto:jean.dupont@example.com"
+                          class="text-gray-600 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark"
+                          >jean.dupont@example.com</a
+                        >
+                      </div>
+                    </div>
+
+                    <div class="flex items-start">
+                      <div
+                        class="flex-shrink-0 bg-primary-light/10 dark:bg-primary-dark/10 p-3 rounded-lg text-primary-light dark:text-primary-dark"
+                      >
+                        <i class="fas fa-phone-alt text-xl"></i>
+                      </div>
+                      <div class="ml-4">
+                        <h4 class="font-medium">Téléphone</h4>
+                        <a
+                          href="tel:+33612345678"
+                          class="text-gray-600 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark"
+                          >+33 6 12 34 56 78</a
+                        >
+                      </div>
+                    </div>
+
+                    <div class="flex items-start">
+                      <div
+                        class="flex-shrink-0 bg-primary-light/10 dark:bg-primary-dark/10 p-3 rounded-lg text-primary-light dark:text-primary-dark"
+                      >
+                        <i class="fas fa-map-marker-alt text-xl"></i>
+                      </div>
+                      <div class="ml-4">
+                        <h4 class="font-medium">Localisation</h4>
+                        <p class="text-gray-600 dark:text-gray-400">
+                          Paris, France
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mt-8">
+                    <h3 class="text-xl font-semibold mb-4">Réseaux sociaux</h3>
+                    <div class="flex space-x-4">
+                      <a
+                        href="#"
+                        title="GitHub"
+                        class="social-icon bg-gray-100 dark:bg-gray-700 w-12 h-12 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-primary-light/10 dark:hover:bg-primary-dark/10 hover:text-primary-light dark:hover:text-primary-dark"
+                      >
+                        <i class="fab fa-github text-xl"></i>
+                      </a>
+                      <a
+                        href="#"
+                        title="LinkedIn"
+                        class="social-icon bg-gray-100 dark:bg-gray-700 w-12 h-12 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-primary-light/10 dark:hover:bg-primary-dark/10 hover:text-primary-light dark:hover:text-primary-dark"
+                      >
+                        <i class="fab fa-linkedin text-xl"></i>
+                      </a>
+                      <a
+                        href="#"
+                        title="Twitter"
+                        class="social-icon bg-gray-100 dark:bg-gray-700 w-12 h-12 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-primary-light/10 dark:hover:bg-primary-dark/10 hover:text-primary-light dark:hover:text-primary-dark"
+                      >
+                        <i class="fab fa-twitter text-xl"></i>
+                      </a>
+                      <a
+                        href="#"
+                        title="Instagram"
+                        class="social-icon bg-gray-100 dark:bg-gray-700 w-12 h-12 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-primary-light/10 dark:hover:bg-primary-dark/10 hover:text-primary-light dark:hover:text-primary-dark"
+                      >
+                        <i class="fab fa-instagram text-xl"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="section-animate" style="animation-delay: 0.2s">
+                  <form class="space-y-6">
+                    <div>
+                      <label
+                        for="name"
+                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                        >Nom complet</label
+                      >
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent bg-white dark:bg-gray-700"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        for="email"
+                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                        >Email</label
+                      >
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent bg-white dark:bg-gray-700"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        for="subject"
+                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                        >Sujet</label
+                      >
+                      <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent bg-white dark:bg-gray-700"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        for="message"
+                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                        >Message</label
+                      >
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows="4"
+                        class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent bg-white dark:bg-gray-700"
+                      ></textarea>
+                    </div>
+
+                    <button
+                      type="submit"
+                      class="btn-primary w-full bg-primary-light dark:bg-primary-dark text-white px-6 py-3 rounded-lg font-medium hover:bg-primary-light/90 dark:hover:bg-primary-dark/90"
+                    >
+                      Envoyer le message
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-100 dark:bg-gray-900 py-8">
+          <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-600 dark:text-gray-400">
+              &copy; 2023 Jean Dupont. Tous droits réservés.
+            </p>
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <script>
+      // Dark mode toggle
+      const themeToggle = document.getElementById("theme-toggle");
+      const mobileThemeToggle = document.getElementById("mobile-theme-toggle");
+
+      function toggleTheme() {
+        if (
+          localStorage.getItem("color-theme") === "dark" ||
+          (!("color-theme" in localStorage) &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+          document.documentElement.classList.remove("dark");
+          localStorage.setItem("color-theme", "light");
+        } else {
+          document.documentElement.classList.add("dark");
+          localStorage.setItem("color-theme", "dark");
+        }
+      }
+
+      themeToggle.addEventListener("click", toggleTheme);
+      mobileThemeToggle.addEventListener("click", toggleTheme);
+
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileSidebar = document.getElementById("mobile-sidebar");
+      const closeMobileMenu = document.getElementById("close-mobile-menu");
+
+      mobileMenuButton.addEventListener("click", () => {
+        mobileSidebar.classList.remove("hidden");
+      });
+
+      closeMobileMenu.addEventListener("click", () => {
+        mobileSidebar.classList.add("hidden");
+      });
+
+      // Close mobile menu when clicking on a link
+      document.querySelectorAll("#mobile-sidebar .nav-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileSidebar.classList.add("hidden");
+        });
+      });
+
+      // Active menu item based on scroll position
+      const sections = document.querySelectorAll("section");
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      function updateActiveLink() {
+        let index = sections.length;
+
+        // Find which section is currently in view
+        while (--index && window.scrollY + 100 < sections[index].offsetTop) {}
+
+        // Update active class on nav links
+        navLinks.forEach((link) => link.classList.remove("active"));
+        navLinks[index].classList.add("active");
+      }
+
+      // Run on scroll and on page load
+      window.addEventListener("scroll", updateActiveLink);
+      window.addEventListener("load", updateActiveLink);
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute("href");
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // Animation on scroll
+      const animateOnScroll = () => {
+        const elements = document.querySelectorAll(".section-animate");
+
+        elements.forEach((element) => {
+          const elementPosition = element.getBoundingClientRect().top;
+          const screenPosition = window.innerHeight / 1.2;
+
+          if (elementPosition < screenPosition) {
+            element.style.opacity = "1";
+          }
+        });
+      };
+
+      window.addEventListener("scroll", animateOnScroll);
+      window.addEventListener("load", animateOnScroll);
+    </script>
+  </body>
+</html>
